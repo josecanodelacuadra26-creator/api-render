@@ -6,9 +6,16 @@ app.use(express.json())
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
- res.json({mensaje: "Bienvenidos a nuestra API"});
+    res.json({ mensaje: "Bienvenidos a nuestra API" });
+});
+app.get("/api", (req, res) => {
+    res.json(
+        {
+            nombre: "Jose",
+            email: "canodelacuadra@gmail.com"
+        });
 });
 
 app.listen(PORT, () => {
- console.log(`Servidor iniciado en puerto ${PORT}`);
+    console.log(`Servidor iniciado en puerto ${PORT}`);
 });
