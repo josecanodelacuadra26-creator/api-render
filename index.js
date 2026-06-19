@@ -23,15 +23,6 @@ app.get("/", (req, res) => {
         ]
     });
 });
-app.get("/api", (req, res) => {
-    res.json(
-        {
-            nombre: "Jose",
-            email: "canodelacuadra@gmail.com"
-
-        });
-});
-
 app.get("/api/peliculas", (req, res) => {
     const { genero } = req.query;
     let peliculas = datos.peliculas;
