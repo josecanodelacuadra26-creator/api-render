@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
         mensaje: "Bienvenidos a nuestra API",
         endpoints: [
             "/api/peliculas",
+            "/api/peliculas&generos=acción",
             "/api/peliculas/:id",
             "/api/generos"
         ]
