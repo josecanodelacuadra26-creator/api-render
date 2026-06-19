@@ -1,5 +1,6 @@
 import express from "express";
-import cors from "cors"
+import cors from "cors";
+import datos from "./peliculas.json" with { type: "json" };
 
 const app = express();
 app.use(cors())
@@ -16,6 +17,27 @@ app.get("/api", (req, res) => {
             nombre: "Jose",
             email: "canodelacuadra@gmail.com"
         });
+});
+
+app.get("/api/peliculas", (req, res) => {
+    const { genero } = req.query;
+    let peliculas = datos.peliculas;
+    if (genero) {
+        peliculas = peliculas.filter(
+            (p) => p.genero.toLowerCase() === genero.toLowerCase()
+        );
+    }
+    res.json({ total: peliculas.length, peliculas });
+});
+
+app.get("/api/peliculas/:id", (req, res) => {
+    const pelicula = datos.peliculas.find((p) => p.id === Number(req.params.id));
+    if (!pelicula) return res.status(404).json({ error: "Película no encontrada" });
+    res.json(pelicula);
+});
+
+app.get("/api/generos", (req, res) => {
+    res.json({ generos: Object.keys(datos.indice_por_genero) });
 });
 
 app.listen(PORT, () => {
